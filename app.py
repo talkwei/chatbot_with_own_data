@@ -2,10 +2,12 @@
 # https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/
 
 import streamlit as st
-from llama_index import VectorStoreIndex, ServiceContext, Document
-from llama_index.llms import OpenAI
+# from llama_index import VectorStoreIndex, ServiceContext, Document
+from llama_index.core import VectorStoreIndex,ServiceContext
+from llama_index.llms.openai import OpenAI
 import openai
-from llama_index import SimpleDirectoryReader
+from llama_index.core import SimpleDirectoryReader
+
 
 openai.api_key = st.secrets.openai_key
 st.header("Chat with the Streamlit docs 💬 📚")
@@ -47,5 +49,6 @@ if st.session_state.messages[-1]["role"] != "assistant":
             st.write(response.response)
             message = {"role": "assistant", "content": response.response}
             st.session_state.messages.append(message) # Add response to message history
+
 
 
